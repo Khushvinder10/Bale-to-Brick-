@@ -8,3 +8,5 @@ data/
 .firebaserc
 service-account*.json
 functions/node_modules/
+
+.firebase/
