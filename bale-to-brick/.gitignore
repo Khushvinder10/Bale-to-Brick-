@@ -1,0 +1,34 @@
+# Python environments and cache
+venv/
+.venv/
+env/
+__pycache__/
+*.pyc
+
+# JavaScript dependencies
+node_modules/
+
+# Secrets (never upload these)
+.env
+*.key
+
+# Large data files
+data/
+datasets/
+*.csv
+*.zip
+*.tar.gz
+
+# Model files
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.bin
+*.h5
+
+# System and editor files
+.DS_Store
+Thumbs.db
+.ipynb_checkpoints/
+.vscode/
