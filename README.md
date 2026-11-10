@@ -1,49 +1,367 @@
-Bale to Brick
-A marketplace that turns crop stubble into a resource instead of smoke. Farmers list land to be cleared, buyers (brick kilns, biomass plants) pick land by region, crop and price, and operators bid in a reverse auction to bale and haul it on time. The buyer seals the deal with the operator they prefer.
+# 🌾 Bale to Brick
+### Turning Crop Stubble into a Valuable Resource, Not Smoke.
 
-Run it
-Requires Node.js 22.13 or newer. No database server needed (uses Node's built-in SQLite).
+**Bale to Brick** is an agricultural marketplace designed to transform crop stubble from an environmental challenge into an economic opportunity. The platform connects farmers, industrial buyers, and agricultural operators through a transparent, technology-driven marketplace.
 
+Farmers can list their fields for stubble clearance, buyers such as brick kilns and biomass plants can discover suitable agricultural land, and operators can compete through a reverse auction system to provide affordable baling and transportation services.
+
+By connecting all three stakeholders, Bale to Brick promotes sustainable agricultural practices, reduces crop residue burning, and creates new economic opportunities.
+
+---
+
+## 🚀 Key Features
+
+### 👨‍🌾 1. Farmer Marketplace
+- Register and manage farmer accounts.
+- List agricultural land for stubble clearance.
+- Specify crop type, land area, location, and clearance deadline.
+- Submit land details using voice or text.
+- Upload Jamabandi and Khatauni documents for AI-powered information extraction.
+- Track clearance progress and confirm completed jobs.
+
+### 🏭 2. Buyer Marketplace
+- Discover available agricultural land by region and crop type.
+- Filter listings according to price, location, and requirements.
+- View land locations and nearby opportunities on an interactive map.
+- Receive AI-powered fair-price recommendations.
+- Select preferred operators through a competitive bidding process.
+- Track ongoing and completed deals.
+
+### 🚜 3. Operator Bidding System
+- Discover available stubble-clearance jobs.
+- Submit competitive bids based on price and completion time.
+- Revise bids according to marketplace rules.
+- Receive notifications when a buyer accepts a bid.
+- Access exact field locations and transportation routes after deal confirmation.
+- Upload photographic proof of completed work.
+
+### 🤖 4. AI-Powered Intelligence
+- Multilingual voice and text-based land listing.
+- Automatic extraction of agricultural land details from documents.
+- AI-generated environmental impact summaries.
+- Smart baling recommendations.
+- AI-powered price estimation.
+- Photo-based verification of field clearance and bales.
+
+### 🛰️ 5. Environmental Monitoring
+- Satellite-based vegetation analysis using Google Earth Engine.
+- Sentinel-2 NDVI and NDTI indicators for field assessment.
+- NASA FIRMS fire detection integration.
+- Zero-burn monitoring during the job lifecycle.
+- Visual proof of completed stubble-clearance operations.
+
+### 🔔 6. Real-Time Communication
+- Live operator bidding updates.
+- Instant notifications when bids are submitted.
+- Deal confirmation notifications.
+- SMS and OTP authentication support.
+- Live marketplace updates using Server-Sent Events.
+
+---
+
+## 🛠️ Technology Stack
+
+| Category | Technologies |
+|---|---|
+| Backend | Node.js, Express.js |
+| Frontend | HTML, CSS, JavaScript |
+| Database | SQLite |
+| Authentication | JWT, Firebase Authentication |
+| AI Integration | Gemini API, Gemma, Ollama |
+| Maps & Navigation | Google Maps Platform, Routes API |
+| Satellite Intelligence | Google Earth Engine, Sentinel-2 |
+| Fire Detection | NASA FIRMS |
+| Image Verification | Google Cloud Vision API |
+| Price Prediction | Vertex AI |
+| Real-Time Updates | Server-Sent Events |
+| Cloud Deployment | Google Cloud Run, Firebase Hosting |
+| Testing | Node.js Test Runner |
+| Version Control | Git, GitHub |
+
+---
+
+## 🔗 Google Technologies Integration
+
+Bale to Brick integrates multiple Google technologies to provide intelligent agricultural services.
+
+| Google Technology | Implementation |
+|---|---|
+| Gemini API | Multilingual AI assistance, document extraction, impact summaries, and baling tips. |
+| Gemma + Ollama | Local AI processing and offline capabilities. |
+| Google Maps Platform | Satellite maps, location selection, village search, and navigation. |
+| Routes API | Road distance, estimated travel time, and transportation cost calculations. |
+| Google Earth Engine | Satellite-based field monitoring using Sentinel-2 data. |
+| Firebase Authentication | Phone OTP and Google sign-in authentication. |
+| Cloud Firestore | Optional real-time bid updates and notification synchronization. |
+| Cloud Functions | Deal confirmation notifications. |
+| Cloud Vision API | Verification of field-clearance and bale photographs. |
+| Vertex AI | AI-based fair-price estimation. |
+| Cloud Run | Containerized backend deployment. |
+| Firebase Hosting | Frontend hosting with HTTPS support. |
+
+**Explore the integrations:** Open `/#/tech` on the running application or select **Built with Google** in the footer.
+
+---
+
+## 🔄 How Bale to Brick Works
+
+The platform follows a three-sided marketplace model involving farmers, buyers, and operators.
+
+1. **Farmer Registration:** Farmers register and list their agricultural land with crop details, area, location, and clearance deadline.
+
+2. **Buyer Discovery:** Buyers explore available land based on their preferred region, crop type, budget, and transportation requirements.
+
+3. **Job Creation:** Buyers select suitable agricultural plots, establish a budget, and define a completion deadline.
+
+4. **Operator Notifications:** Relevant operators receive notifications about available jobs.
+
+5. **Reverse Auction:** Operators submit competitive bids based on service price and completion time.
+
+6. **Bid Selection:** Buyers evaluate the bids and select their preferred operator.
+
+7. **Deal Confirmation:** Once a bid is accepted, contact information, precise location, and transportation routes become accessible to the involved parties.
+
+8. **Job Execution:** Operators complete the baling and transportation work and upload photographic evidence.
+
+9. **Verification:** Farmers confirm job completion, and satellite-based zero-burn monitoring can be performed.
+
+10. **Feedback:** Farmers and buyers rate the operator to improve marketplace transparency and accountability.
+
+---
+
+## 🔐 Privacy & Security
+
+Privacy is an important part of the Bale to Brick architecture.
+
+- Buyers and operators initially see approximate field locations rather than exact coordinates.
+- Precise location information is unlocked only after a deal is confirmed.
+- Uploaded land-record photographs are processed and discarded rather than permanently retained.
+- Firestore stores limited operational counts and statuses.
+- Authentication and server-side verification protect user accounts.
+- API keys and application secrets should be configured through environment variables.
+
+---
+
+## ⚙️ Installation & Setup
+
+### Prerequisites
+
+Make sure you have the following installed:
+
+- Node.js 22.13 or newer
+- npm
+- Git (optional, for cloning the repository)
+
+**Note:** Bale to Brick uses Node.js built-in SQLite, so a separate database server is not required.
+
+### 1. Clone the Repository
+
+```bash
+git clone <YOUR_GITHUB_REPOSITORY_URL>
+cd bale-to-brick
+```
+
+### 2. Install Dependencies
+
+```bash
 npm install
-cp .env.example .env   # optional: add Google keys
-npm start              # http://localhost:3000
-npm test               # end-to-end tests (Google features run against a mock Gemini)
-On first start with an empty database, demo data is loaded (DEMO_SEED=0 to skip). Demo accounts use the password demo1234: farmer@demo.in, farmer2@demo.in, buyer@demo.in, buyer2@demo.in, operator@demo.in, operator2@demo.in, operator3@demo.in. With no SMS or email service set up, one-time codes are shown on screen (demo mode).
+```
 
-Open /#/tech ("Built with Google" in the footer) to see which Google services are connected.
+### 3. Configure Environment Variables
 
-Google technologies and where they are used
-Google service	What it does in Bale to Brick	Without a key
-Gemini API (AI Studio)	Farmer describes land by voice or text in Hindi, Marwari, Mewari, Punjabi or English and the form fills itself (bigha, killa and hectare converted). Reads a photo of a Jamabandi or Khatauni: owner, Khasra numbers, area, and checks the name against the account. Writes the impact summary and baling tips in Hindi or English.	Hidden; Gemma takes over if running
-Gemma (open model)	The same AI features offline, through Ollama on a laptop or field office server.	Off
-Google Maps Platform	Satellite pin picker, Places search for villages, one map of all open land with the buyer's kiln, satellite view and directions on sealed deals.	Keyless map embeds, GPS and pasted links
-Routes API	Road distance and drive time: operator's yard to field, field to kiln, plus a hauling cost.	Straight line x 1.3
-Google Earth Engine	Sentinel-2 NDVI/NDTI says whether the field is harvested; NASA FIRMS fire pixels prove zero burning from a week before the deal to completion.	NASA FIRMS direct for fire only
-Firebase Authentication	Phone OTP for farmers (Firebase sends the SMS) and "Continue with Google" for buyers, verified on the server with the Admin SDK.	Built-in OTP (SMTP/Twilio/Fast2SMS or demo)
-Cloud Firestore	Live bid boards and notification pings; bids appear on the buyer's screen instantly.	Server-Sent Events (also instant)
-Cloud Functions for Firebase	functions/ texts the winning operator and the farmer when a deal is sealed.	Server can text directly (SMS_ALERTS=1)
-Cloud Vision API	Checks proof photos for a cleared field or bales, flags smoke or fire.	Gemini looks at the photo
-Vertex AI	Suggests a fair job price (AutoML tabular regression trained on npm run export-training).	Local model learning from past deals
-Cloud Run + Firebase Hosting	Container deploy (Dockerfile) served at your-project.web.app with HTTPS.	Run anywhere with Node
-Privacy is kept the same way throughout: before a deal, buyers and operators see only the village and a position rounded to about 5 km; land-record photos are read and then discarded; Firestore holds only counts and statuses.
+Create your environment file:
 
-Deploy on Google Cloud (Cloud Run + Firebase Hosting)
-gcloud run deploy bale-to-brick --source . --region asia-south1 --allow-unauthenticated \
-  --max-instances 1 --set-env-vars OTP_DEV_MODE=1,GEMINI_API_KEY=...,GOOGLE_MAPS_API_KEY=...
-cp .firebaserc.example .firebaserc     # put your project id in it
+```bash
+cp .env.example .env
+```
+
+Add the required configuration and optional Google API credentials to `.env`.
+
+### 4. Start the Application
+
+```bash
+npm start
+```
+
+Open the application in your browser:
+
+**http://localhost:3000**
+
+### 5. Run Tests
+
+```bash
+npm test
+```
+
+The end-to-end test suite runs Google-related features against a mock Gemini implementation.
+
+---
+
+## 👤 Demo Accounts
+
+On the first startup with an empty database, demonstration data is automatically loaded.
+
+**Default demo password:** `demo1234`
+
+| Role | Email |
+|---|---|
+| Farmer | farmer@demo.in |
+| Farmer | farmer2@demo.in |
+| Buyer | buyer@demo.in |
+| Buyer | buyer2@demo.in |
+| Operator | operator@demo.in |
+| Operator | operator2@demo.in |
+| Operator | operator3@demo.in |
+
+To disable automatic demo-data seeding:
+
+```env
+DEMO_SEED=0
+```
+
+**OTP Demo Mode:** When SMS or email services are not configured, one-time verification codes are displayed on the screen.
+
+---
+
+## ☁️ Google Cloud Deployment
+
+Bale to Brick supports deployment using Google Cloud Run and Firebase Hosting.
+
+### Deploy Backend to Cloud Run
+
+```bash
+gcloud run deploy bale-to-brick \
+  --source . \
+  --region asia-south1 \
+  --allow-unauthenticated \
+  --max-instances 1 \
+  --set-env-vars OTP_DEV_MODE=1
+```
+
+Configure your production environment variables and API secrets securely.
+
+### Configure Firebase
+
+Copy the Firebase configuration template:
+
+```bash
+cp .firebaserc.example .firebaserc
+```
+
+Add your Google Cloud/Firebase project ID to `.firebaserc`.
+
+Deploy Firebase Hosting and Firestore rules:
+
+```bash
 firebase deploy --only hosting,firestore:rules
-firebase deploy --only functions        # optional: SMS on deal sealed (set its secrets first)
-Notes for Cloud Run: the SQLite file lives in the container, so data resets when the instance restarts (fine for a demo; keep --max-instances 1). For a real launch, move to Cloud SQL or keep one instance with a Cloud Storage volume and regular backups. Behind Firebase Hosting, Firestore carries the live updates. Add your web.app and run.app addresses to the Maps key's allowed websites and to Firebase Auth's authorised domains.
+```
 
-How a job moves
-Farmer posts acres, crop, location and a clear-by date (speak it, or type it).
-Buyer sets preferences; listings are ranked by match score and can be sorted by distance to the kiln.
-Buyer picks a plot with a budget (Vertex AI suggests one) and deadline. Operators in that state are notified.
-Operators bid price plus days. A revised bid must be lower, or the same price in fewer days.
-Buyer accepts one bid live. Contact details, the exact pin and the road route unlock for the three parties.
-Operator starts, adds proof photos (Vision-checked), finishes; the farmer confirms; a satellite zero-burn check can be run; farmer and buyer rate the operator.
-Layout
-server.js (app, security headers) | src/api.js (marketplace rules) | src/api-google.js (Google feature routes) src/google/ (ai, earth, firebase, routes, vertex, vision) | src/otp.js | src/live.js | src/estimate.js public/ (single-page app, English and Hindi) | test/ | functions/ (Cloud Function) | firebase.json, firestore.rules, Dockerfile
+Optionally deploy Cloud Functions:
 
-Not included yet
-Online payments and escrow (settled directly between buyer and operator) and an admin panel. Before public launch: set a strong JWT_SECRET, use HTTPS, restrict all API keys, and back up the data.
+```bash
+firebase deploy --only functions
+```
+
+**Deployment considerations:**
+
+- SQLite data is stored inside the Cloud Run container and can reset when the instance restarts.
+- The current configuration is suitable for demonstrations, not production-grade persistent storage.
+- For production, migrate to Cloud SQL or another persistent database solution.
+- Configure Firebase Authentication authorized domains.
+- Restrict Google Maps API keys to authorized websites.
+- Configure HTTPS and secure application secrets.
+
+---
+
+## 📁 Project Structure
+
+```text
+bale-to-brick/
+│
+├── src/
+│   ├── google/
+│   │   ├── ai/
+│   │   ├── earth/
+│   │   ├── firebase/
+│   │   ├── routes/
+│   │   ├── vertex/
+│   │   └── vision/
+│   │
+│   ├── api.js
+│   ├── api-google.js
+│   ├── otp.js
+│   ├── live.js
+│   └── estimate.js
+│
+├── public/
+│   └── Frontend application
+│
+├── functions/
+│   └── Firebase Cloud Functions
+│
+├── test/
+│   └── End-to-end tests
+│
+├── server.js
+├── Dockerfile
+├── firebase.json
+├── firestore.rules
+├── package.json
+├── .env.example
+└── README.md
+```
+
+---
+
+## 🌍 Environmental & Social Impact
+
+Bale to Brick aims to create value for multiple stakeholders while addressing agricultural residue management challenges.
+
+- **For Farmers:** Additional income opportunities and convenient access to stubble-clearance services.
+- **For Buyers:** Reliable access to agricultural residue as an alternative biomass resource.
+- **For Operators:** Business opportunities through competitive service bidding.
+- **For the Environment:** Reduced dependence on crop residue burning and better utilization of agricultural waste.
+
+The platform aims to contribute towards a more sustainable agricultural ecosystem through technology and collaboration.
+
+---
+
+## 🚧 Future Enhancements
+
+The following features are not yet included in the current implementation:
+
+- Integrated online payments and escrow services.
+- Dedicated administrative dashboard.
+- Production-grade persistent database infrastructure.
+- Advanced environmental impact analytics.
+- Expanded regional language support.
+- More comprehensive satellite-based verification.
+- Enhanced operator performance and reputation analytics.
+
+---
+
+## ⚠️ Production Readiness
+
+Before making the application publicly available:
+
+- Replace the development JWT secret with a strong production secret.
+- Disable development OTP mode.
+- Configure production SMS and email services.
+- Restrict API keys and configure appropriate permissions.
+- Enable HTTPS.
+- Implement persistent database storage and regular backups.
+- Review authentication, authorization, and Firestore security rules.
+
+---
+
+## 💡 Our Vision
+
+**Waste should not become smoke when it can become a resource.**
+
+Bale to Brick envisions a future where agricultural residue creates economic opportunities instead of contributing to air pollution.
+
+By bringing farmers, buyers, and operators onto one intelligent marketplace, we aim to build a more connected, efficient, and sustainable agricultural ecosystem.
+
+---
+
+**Built with ❤️ for sustainable agriculture and a cleaner future.**
