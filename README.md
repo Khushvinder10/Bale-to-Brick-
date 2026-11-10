@@ -364,4 +364,4 @@ By bringing farmers, buyers, and operators onto one intelligent marketplace, we 
 
 ---
 
-**Built with ❤️ for sustainable agriculture and a cleaner future.**
+**Built with ❤️ for sustainable agriculture and a cleaner future.**.
